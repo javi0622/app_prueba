@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width initial-scale=1">		 
+<title>PANI</title>		
+
+<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./bootstrap/css/sweetalert.css">
+<script src="./bootstrap/js/sweetalert.min.js"></script> 
+<script src="./bootstrap/js/jquery.min.js"></script>
+<script src="./bootstrap/js/bootstrap.min.js"></script>
+<script src="./bootstrap/js/bootbox.js"></script>
+<script type="text/javascript">
+ $(document).ready(function ()
+ {
+             $('.Consulta').click(function()     
+          	{   
+          	  var sorteo=$("#selectsorteo").val(); 
+          	  var numero=$("#txtnumero").val();    
+          	  var serie=$("#txtserie").val();    
+          	 // alert(val+"--"+sorteo+"--"+numero+"--"+serie+"--"+registro+"--"+total+"--"+impto+"--"+neto);
+          		 if (sorteo== '' || numero== '' || serie=='')
+          		 {
+          		      swal("Error...!", "Seleccione todos los campos necesarios para la consulta!", "error");
+          		 }
+          		  else
+          		 {
+                     
+                   /* $.ajax({
+                            type:'POST',
+                            //url:'getData.php',
+                            url:'_pp_consulta_menor_app.php',
+                            dataType: "json",
+                            //data:{user_id:user_id},
+                            data:{sorteo_app : sorteo  , _app : sorteo , sorteo_app : sorteo },
+                            success:function(data){
+                                if(data.status == 'ok'){
+                                    $('#userName').text(data.result.name);                    
+                                    $('.user-content').slideDown();
+                                }else{
+                                    $('.user-content').slideUp();
+                                    alert("User not found...");
+                                } 
+                            }
+                        });
+
+
+
+
+              		    $.ajax
+                      ({
+                           url:'_pp_consulta_menor_app.php',
+                           type:'POST',                           
+                           dataType: 'json',
+                           data: {sorteo: sorteo},
+                          success: function(data)
+                          {
+                            if(data.status == 'ok')
+                            {
+                              $('#info_sorteo').html(data);
+                              alert();
+                            }
+                          } ,
+                          error: function()
+                          {
+                              $('#info_sorteo').html("Error");
+                          }
+                      });
+                      /* data: {
+                                       'sorteo': + sorteo+ , 
+                                       'numero': + numero+ , 
+                                       'serie': + serie
+                                 },*/
+
+                      var urr = 'http://181.210.25.211:8990/APP_CONSULTA/_pp_consulta_menor_app.php?sorteo='+sorteo+'&numero='+numero+'&serie='+serie+'&valida='+Math.random();
+
+                    //  var urr = 'http://192.168.15.6/APP_CONSULTA/_pp_consulta_menor_app.php?sorteo='+sorteo+'&numero='+numero+'&serie='+serie+'&valida='+Math.random();
+                      $("#info_sorteo").load(urr); 
+                      alert(urr);
+          		 }
+
+          	});
+
+
+             $('.ConsultaMayor').click(function()     
+            {   
+                  var sorteo=$("#selectsorteomayor").val(); 
+                  var numero=$("#txtnumeromayor").val();    
+
+                   if (sorteo == '' || numero== '')
+                   {
+                        swal("Error...!", "Seleccione todos los campos necesarios para la consulta!", "error");
+                   }
+                    else
+                   {
+                       var urr = '_pp_consulta_mayor_app.php?sorteo='+sorteo+'&numero='+numero+'&valida='+Math.random();                   
+                       $("#info_sorteo_mayor").load(urr);       
+                   }
+            });
+  });
+
+</script>
+</head>
+<body>
+<form class="" method="post" id="formu_pago_premios" role='form' name="formu_pago_premios"><br><br>
+
+
+<a style = "width:100%"  class="btn btn-info" role="button" data-toggle="collapse" href="#collapse1" aria-expanded="false" aria-controls="collapse"> Consulta de Premios de Lotería Menor  </a>
+<div class="collapse" id="collapse1">
+      <!-- -->
+      <div class="col-md-6"><legend>Consulta de Lotería Menor</legend><!-- Select Basic -->
+                <div class="row">
+                <label class="col-md-3 control-label" for="selectbasic">Seleccionar el Sorteo</label>
+                <div class="col-md-6">
+                <select id="selectsorteo" name="selectsorteo" class="form-control">
+                    <option>Seleccione Uno</option>
+                    <option value="3195">3195</option>
+                    <option value="3194">3194</option>
+                    <option value="3193">3193</option>
+                    <option value="3192">3192</option>
+                    <option value="3191">3191</option>
+                    <option value="3190">3190</option>
+                 </select>
+                 <span class="help-block">Indicar el sorteo al que pertence el billete</span>  
+                </div>
+               </div>
+          
+               <div class="row">
+                <label class="col-md-3 control-label" for="textarea">Digitar el Número</label>
+                <div class="col-md-6">                     
+                 <input id="txtnumero" name="txtnumero" placeholder="Numero" class="form-control input-md" type="number" maxlength="2">
+                   <span class="help-block">Digitar el Número</span>  
+                </div>
+               </div>
+          
+               <div class="row">
+                     <label class="col-md-3 control-label" for="textarea">Digitar la Serie</label>
+                     <div class="col-md-6">                     
+                     <input id="txtserie" name="txtserie" placeholder="Serie del Billete" class="form-control input-md" type="number" maxlength="4">
+                     <span class="help-block">Digitar la Serie</span>  
+                     </div>
+              </div>
+
+              <div class="row">    
+                <div class="col-md-8">       
+                 <button id="buttonConsulta" name="buttonConsulta" type="button" class="Consulta btn btn-info">CONSULTA EL BILLETE</button>
+                </div>
+              </div>         
+
+      </div>
+
+      <div class="col-md-6">
+          <legend>Información del Billete</legend>
+          <div class="row">
+                  <div class="panel-group" id="info_sorteo" name="info_sorteo">
+                     <div class='panel panel-warning'>
+                            <div class='panel-heading'>Datos de la Busqueda</div>
+                            <div class='panel-body' name='info_sorteo' id='info_sorteo'>
+                              <label>Billete vendido por: </label><br>
+                              <label>Estado de Billete: </label><br>
+                              <label>Sorteo: </label><br>
+                              <label>Registro:  </label><br>
+                              <label>Numero:  </label><br>
+                              <label>Serie:  </label><br>
+                              <label>Valor Principal: </label><br>
+                              <label>Impto: </label><br>
+                              <label>Valor Neto: </label><br><br>                 
+                            </div>
+                     </div>
+                   </div> 
+            </div>
+      </div>
+
+<!-- -->
+
+
+</div><br><br>
+
+
+<a style = "width:100%"  class="btn btn-info" role="button" data-toggle="collapse" href="#collapse2" aria-expanded="false" aria-controls="collapse"> Consuta de Premios de Lotería Mayor</a>
+      <div class="collapse" id="collapse2">
+           
+                  <div class="col-md-6"><legend>Busqueda del Billete</legend><!-- Select Basic -->
+                    <div class="form-group">
+                      <div class="row">
+                      <label class="col-md-4 control-label" for="selectbasic">Seleccionar Sorteo</label>
+                      <div class="col-md-4">
+                      <select id="selectsorteomayor" name="selectsorteo" class="form-control">
+                        <option></option>
+                      </select>
+                     <span class="help-block">Indicar el Sorteo</span>  
+                     </div>
+                    </div>
+                     </div>
+                     <div class="form-group">
+                    <div class="row">
+                    <label class="col-md-4 control-label" for="textarea">Digitar Número</label>
+                    <div class="col-md-4">                     
+                     <input id="txtnumeromayor" name="txtnumero" placeholder="Número Billete" onkeypress="return justNumbers(event)", class="form-control input-md" type="text" maxlength="5">
+                       <!--span class="help-block">Digitar el Número Billete</span-->  
+                    </div>
+                    </div>
+                     </div>
+                   
+                     <div class="form-group">
+                    <div class="row">    
+                      <div class="col-md-8" align="center" style="margin-left:16.5%">      
+                       <button id="buttonConsulta" name="buttonConsulta" type="button" class="ConsultaMayor btn btn-info">CONSULTA EL BILLETE</button>
+                      </div>
+                    </div>
+                     </div>
+                 </div>
+
+                  <div class="col-md-6">
+                    <legend>Información del Billete</legend>
+                    <div class="row">
+                      <div class="panel-group" id="info_sorteo_mayor" name="info_sorteo">
+                         <div class='panel panel-warning'>
+                                <div class='panel-heading'>Datos de la Busqueda</div>
+                                <div class='panel-body' name='info_sorteo_mayor' id='info_sorteo_mayor'>
+                                  <label>Billete vendido por: </label><br>
+                                  <label>Sorteo: </label><br>
+                                  <label>Registro:  </label><br>
+                                  <label>Billete:  </label><br>
+                                  <label>Valor Total: </label><br>
+                                  <label>Impuesto: </label><br>
+                                  <label>Valor Neto: </label><br><br>                 
+                                </div>
+                         </div>
+                      </div> 
+                      </div>
+                  </div>
+           
+      </div>
+</form>
+ 	
+</body>
+</html>

@@ -14,10 +14,10 @@
   <author href="https://build.phonegap.com" email="javi0622@gmail.com">  Javier Oseguera    </author>
 
 <!-- Don't block any requests -->
- 
+<access origin="*" subdomains="true" /> 
 <access origin="http://google.com"></access>  
  <content src="http://google.com"></content>      
- <access origin="*" subdomains="true" />
+ 
     <!-- Added the following intents to support the removal of whitelist code from base cordova to a plugin -->
     <!-- Whitelist configuration. Refer to https://cordova.apache.org/docs/en/edge/guide_appdev_whitelist_index.md.html -->
 
